@@ -1,0 +1,28 @@
+{
+  "name": "encurtador-url",
+  "version": "1.0.0",
+  "description": "API para encurtamento de URL",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --ext .js,.html -f ./node_modules/eslint-friendly-formatter . --fix",
+    "prepush": "npm run lint",
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^11.0.0",
+    "express": "^4.17.2",
+    "express-promise-router": "^4.1.1",
+    "node-url-shortener": "^2.0.0",
+    "pg": "^8.7.1"
+  }
+}
