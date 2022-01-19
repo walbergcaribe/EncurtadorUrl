@@ -1,0 +1,142 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: API - Encurtador URL
+host: localhost:3000
+basePath: /api
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+  
+paths:
+  /urls:
+    get:
+      tags:
+        - Buscas e Listagens
+      description: Retorna a lista de URL's encurtadas.
+      responses:
+        "200":
+          description: OK
+          schema:  
+            $ref: '#/definitions/schemas/URLEncurtadaArray'
+    post:
+      tags:
+        - Armazenamento
+      description: Cria a URL encurtada e salva no banco de dados
+      parameters:
+        - name: url_original
+          description: URL original que será encurtada 
+          in: body
+          required: true
+      responses:
+        "201":
+          description: Created
+          schema:  
+            $ref: '#/definitions/schemas/URLEncurtadaCreated'
+  /urls/{id}:
+    get:
+      tags:
+        - Buscas e Listagens
+      description: Retorna a URL encurtada pelo ID.
+      parameters:
+        - name: id
+          type: number
+          in: path
+          required: true
+      responses:
+        "200":
+          description: OK
+          schema:  
+            $ref: '#/definitions/schemas/URLEncurtada'
+  /urls/encurtamento/{encurtamento}:
+    get:
+      tags:
+        - Buscas e Listagens
+      description: Retorna a URL encurtada pelo seu encurtamento.
+      parameters:
+        - name: encurtamento
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: OK
+          schema:  
+            $ref: '#/definitions/schemas/URLEncurtada'
+  /urls/data/{data}:
+    get:
+      tags:
+        - Buscas e Listagens
+      description: Retorna a URL encurtada pela data de cadastro.
+      parameters:
+        - name: data
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: OK
+          schema:  
+            $ref: '#/definitions/schemas/URLEncurtada'
+
+definitions:
+  schemas:
+    URLEncurtada:
+      type: object
+      properties:
+        id:
+          type: integer
+        url_original:
+          type: string
+        url_encurtada:
+          type: string
+        url_original:
+          data: string
+      example:
+        id: 33
+        url_original: "https://g1.globo.com/saude/coronavirus/noticia/2022/01/18/brasil-registra-recorde-de-131-mil-casos-conhecidos-de-covid-em-24-h-media-movel-tambem-supera-pior-marca.ghtml"
+        url_encurtada: "https://cdpt.in/MTU3MjMxNA=="
+        data: "2022-01-19T03:06:03.810Z"
+    URLEncurtadaCreated:
+      type: object
+      properties:
+        message:
+          type: string
+        body:
+          type: object
+          properties: 
+            url: 
+              type: object
+              properties:
+                id:
+                  type: integer
+                url_original:
+                  type: string
+                url_encurtada:
+                  type: string
+                url_original:
+                  data: string
+      example:
+        message: "URL encurtada com sucesso!"
+        body: 
+          url:
+            id: 33
+            url_original: "https://g1.globo.com/saude/coronavirus/noticia/2022/01/18/brasil-registra-recorde-de-131-mil-casos-conhecidos-de-covid-em-24-h-media-movel-tambem-supera-pior-marca.ghtml"
+            url_encurtada: "https://cdpt.in/MTU3MjMxNA=="
+            data: "2022-01-19T03:06:03.810Z"
+    URLEncurtadaArray:
+      type: array
+      items:
+        $ref: '#/definitions/schemas/URLEncurtada'
+      example:
+        - id: 33
+          url_original: "https://g1.globo.com/saude/coronavirus/noticia/2022/01/18/brasil-registra-recorde-de-131-mil-casos-conhecidos-de-covid-em-24-h-media-movel-tambem-supera-pior-marca.ghtml"
+          url_encurtada: "https://cdpt.in/MTU3MjMxNA=="
+          data: "2022-01-19T03:06:03.810Z"
+        - id: 34
+          url_original: "https://autoesporte.globo.com/entretenimento/noticia/2022/01/aviao-de-cristiano-ronaldo-custa-r-120-milhoes-e-e-praticamente-uma-suite-de-luxo-com-asas.ghtml"
+          url_encurtada: "https://cdpt.in/MTU3MjM0Mg=="
+          data: "2022-01-19T03:13:34.179Z"
