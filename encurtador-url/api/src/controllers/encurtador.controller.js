@@ -10,9 +10,11 @@ const db = require("../config/database");
 var shortUrl = require('node-url-shortener');
 
 /**
- * @api {get} /api/urls Lista todas URL's encurtadas
- * @apiSuccess {200} {array} Lista de URL's encurtadas
+ * Lista todas URL's encurtadas. <br>
+ * API (GET) - /api/urls <br>
  * 
+ * Exemplo de chamada: {@link http://localhost:3000/api/urls}
+ *
  * @param {any} req - Objeto de solicitação 
  * @param {any} res - Resposta da solicitação
  * 
@@ -25,8 +27,10 @@ exports.listAllURLsEncurtadas = async (req, res) => {
 };
 
 /**
- * @api {get} /api/urls/{:id} Recupera a URL encurtada pelo ID
- * @apiSuccess {200} {object} Dados da URL encurtada
+ * Recupera a URL encurtada pelo ID. <br>
+ * API (GET) - /api/urls/{:id} <br>
+ * 
+ * Exemplo de chamada: {@link http://localhost:3000/api/urls/30}
  * 
  * @param {any} req - Objeto de solicitação 
  * @param {any} res - Resposta da solicitação
@@ -41,9 +45,11 @@ exports.getURLEncurtadaById = async (req, res) => {
 };
 
 /**
- * @api {get} /api/urls/{:data} Recupera a URL encurtada pela data de criação
- * @apiSuccess {200} {object} Dados da URL encurtada
- *  
+ * Recupera a URL encurtada pela data de criação. <br>
+ * API (GET) - /api/urls/{:data} <br>
+ * 
+ * Exemplo de chamada: {@link http://localhost:3000/api/urls/2022-01-14}
+ * 
  * @param {any} req - Objeto de solicitação 
  * @param {any} res - Resposta da solicitação
  * 
@@ -57,8 +63,10 @@ exports.getURLEncurtadaByData = async (req, res) => {
 };
 
 /**
- * @api {get} /api/urls/{:url_encurtada} Recupera a URL encurtada pelo encurtamento
- * @apiSuccess {200} {object} Dados da URL encurtada
+ * Recupera a URL encurtada pelo encurtamento. <br>
+ * API (GET) - /api/urls/{:url_encurtada} <br>
+ * 
+ * Exemplo de chamada: {@link http://localhost:3000/api/urls/MTU2MTc0OQ==}
  * 
  * @param {any} req - Objeto de solicitação 
  * @param {any} res - Resposta da solicitação
@@ -74,8 +82,10 @@ exports.getURLEncurtadaByEncurtamento = async (req, res) => {
 };
 
 /**
- * @api {post} /api/urls Gera a URL encurtada com base na URL original e salva as informações no banco de dados
- * @apiSuccess {201} {object} Dados da URL encurtada
+ * Gera a URL encurtada com base na URL original e salva as informações no banco de dados. <br>
+ * API (POST) - /api/urls <br>
+ * 
+ * Exemplo de chamada: {@link http://localhost:3000/api/urls/} <br>
  * 
  * Exemplo de objeto que deverá ser passado no body: <br>
  * 
