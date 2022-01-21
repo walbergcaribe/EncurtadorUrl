@@ -1,3 +1,5 @@
+CREATE SEQUENCE public.tb_url_encurtada_id_seq START 1;
+
 CREATE TABLE public.tb_url_encurtada
 (
     id bigint NOT NULL DEFAULT nextval('tb_url_encurtada_id_seq'::regclass),
